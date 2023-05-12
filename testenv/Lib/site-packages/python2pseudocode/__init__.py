@@ -1,0 +1,33 @@
+def python_to_pseudocode(python_code):
+
+    basic_terms = {'print': 'OUTPUT ', 'for': 'loop', 'while': 'loop while',
+                   'and': 'AND', 'not': 'NOT', 'or': 'OR', '%': 'mod', '/': 'div',  '#': '//',
+                   '==': '=', 'elif': 'else if'}
+
+    python_code_list = python_code.splitlines()
+
+    for line in range(len(python_code_list)):
+        for basic_term in basic_terms:
+            if basic_term in python_code_list[line]:
+                python_code_list[line] = python_code_list[line].replace(
+                    basic_term, basic_terms[basic_term])
+        if 'in range(' in python_code_list[line]:
+            range_value = python_code_list[line][python_code_list[line].index(
+                "(") + 1:python_code_list[line].rindex(")")]
+            if range_value.isnumeric():
+                int_to_range_value = int(range_value) - 1
+
+                python_code_list[line] = python_code_list[line].replace(
+                    'in range(' + range_value + ')', 'from 0 to ' + str(int_to_range_value))
+
+        if 'if' in python_code_list[line] and python_code_list[line][-1] == ':':
+            python_code_list[line] = python_code_list[line].replace(
+                ':', ' then')
+
+        if 'else' in python_code_list[line] and python_code_list[line][-1] == ':':
+            python_code_list[line] = python_code_list[line].replace(
+                ':', ' then')
+
+    pseudocode = """{}""".format("\n".join(python_code_list))
+
+    return pseudocode
