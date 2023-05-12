@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django Test Project</title>
+    <link rel="stylesheet" type='text/css' href="{% static 'style.css' %}">
+</head>
+<body>
+    <h1>This is index.html</h1>
+    <h2>{{ message }}</h2>
+    <h2>This page is visited {{ count }} times.</h2>
+    <img src="{% static 'img.jpg' %}" alt="Amrita Logo">
+    <a href="StudentForm.html">Form</a>
+    <ol>
+        {% for f in fruit_list %}
+        <li> {{ f }} </li>
+        {% endfor %}
+    </ol>
+    <h3>Programs offered</h3>
+    <table border="1">
+        {% for r in program_rows %}
+        <tr>
+            <td>{{ r.title }}</td>
+            <td>{{ r.branch }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <h3>Students' list</h3>
+    <table border="1">
+        {% for s in student_rows %}
+        <tr>
+            <td>{{ s.name }}</td>
+            <td>{{ s.roll }}</td>
+            <td>{{ s.year }}</td>
+            <td>{{ s.dob }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</body>
+</html>
